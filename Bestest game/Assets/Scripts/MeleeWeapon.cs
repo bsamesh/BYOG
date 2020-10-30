@@ -6,7 +6,7 @@ using UnityEngine;
 public class MeleeWeapon : MonoBehaviour
 {
     int damage = 25;
-
+    private bool hittingRight = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,8 +18,17 @@ public class MeleeWeapon : MonoBehaviour
     {
         
     }
+    public void HitDirection(bool right)
+    {
+        hittingRight = right;
+    }
 
-    internal int getPower()
+    public bool HittingRight()
+    {
+        return hittingRight;
+    }
+
+    public int getPower()
     {
         return damage;
     }

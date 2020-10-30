@@ -27,14 +27,31 @@ public class Enemy : MonoBehaviour
         MeleeWeapon melee = collider.gameObject.GetComponent<MeleeWeapon>();
         if (melee != null)
         {
-            Damage(melee.getPower(),100);
+            Damage(melee.getPower(),100, melee.HittingRight());
+
+        }
+        RangedWeapon ranged = collider.gameObject.GetComponent<RangedWeapon>();
+        if (ranged != null)
+        {
+            Damage(ranged.getPower(), 20, ranged.HittingRight());
+
+        }
+
+        Bullet bullet = collider.gameObject.GetComponent<Bullet>();
+        if (bullet != null)
+        {
+            Damage(bullet.getPower(), 50, bullet.HittingRight());
 
         }
     }
 
-    public void Damage(int baseDamage,int knockback)
+    public void Damage(int baseDamage,int knockback, bool hittingRight)
     {
-        m_Rigidbody2D.AddForce(new Vector2(knockback, 0));
+        if(hittingRight)
+            m_Rigidbody2D.AddForce(new Vector2(knockback, 0));
+        else
+            m_Rigidbody2D.AddForce(new Vector2(-knockback, 0));
+
         hp -= baseDamage;
         Debug.Log("Enemy took " + baseDamage + " damage and has " + hp +" hp left");
         if (hp <= 0)

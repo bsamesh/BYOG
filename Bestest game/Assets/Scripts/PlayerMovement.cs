@@ -9,10 +9,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]int runSpeed = 50;
 
     public Transform meleeWeapon;
+    public Transform rangedWeapon;
 
     private Vector3 m_Velocity = Vector3.zero;
     private bool m_Grounded;            // Whether or not the player is grounded.
     private Rigidbody2D m_Rigidbody2D;
+    private bool lookingRight = true;
     int jumpsAvailable = 1;
     bool jump = false;
     List<Collider2D> currentColiisions;
@@ -42,8 +44,12 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Melee"))
         {
-            Debug.Log("here");
             MeleeAttack();
+        }
+
+        if (Input.GetButtonDown("Ranged"))
+        {
+            RangedAttack();
         }
 
     }
@@ -68,6 +74,10 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(float move)
     {
+        if (move > 0)
+            lookingRight = true;
+        if (move < 0)
+            lookingRight = false;
         // Move the character by finding the target velocity
         Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
         // And then smoothing it out and applying it to the character
@@ -98,9 +108,27 @@ public class PlayerMovement : MonoBehaviour
 
     public void MeleeAttack()
     {
-        Debug.Log("melee");
-        meleeWeapon.gameObject.SetActive(true);
-        Invoke("disableMelee", 1f);
+        if (meleeWeapon.gameObject.activeSelf == false)
+        {
+            Debug.Log("melee");
+            meleeWeapon.gameObject.SetActive(true);
+            Invoke("disableMelee", 1f);
+        }
+    }
+    public void RangedAttack()
+    {
+        if (rangedWeapon.gameObject.activeSelf == false)
+        {
+            Debug.Log("ranged");
+            rangedWeapon.gameObject.SetActive(true);
+            rangedWeapon.gameObject.GetComponent<RangedWeapon>().Shoot(lookingRight);
+            Invoke("disableRanged", 0.5f);
+        }
+    }
+    private void disableRanged()
+    {
+        rangedWeapon.gameObject.SetActive(false);
+
     }
     private void disableMelee()
     {
