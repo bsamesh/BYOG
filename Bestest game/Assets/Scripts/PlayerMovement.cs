@@ -7,10 +7,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float m_JumpForce = 400;							// Amount of force added when the player jumps.
     [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;  // How much to smooth out the movement
     [SerializeField]int runSpeed = 50;
-    [SerializeField] private LayerMask m_WhatIsGround;                          // A mask determining what is ground to the character
-    [SerializeField] private Transform m_GroundCheck;
 
-    const float k_GroundedRadius = .05f; // Radius of the overlap circle to determine if grounded
+    public Transform meleeWeapon;
+
     private Vector3 m_Velocity = Vector3.zero;
     private bool m_Grounded;            // Whether or not the player is grounded.
     private Rigidbody2D m_Rigidbody2D;
@@ -18,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     bool jump = false;
     List<Collider2D> currentColiisions;
     float horizontalMove = 0;
+
 
     private void Awake()
     {
@@ -38,6 +38,12 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             jump = true;
+        }
+
+        if (Input.GetButtonDown("Melee"))
+        {
+            Debug.Log("here");
+            MeleeAttack();
         }
 
     }
@@ -92,7 +98,14 @@ public class PlayerMovement : MonoBehaviour
 
     public void MeleeAttack()
     {
-        //maybe do animation here
+        Debug.Log("melee");
+        meleeWeapon.gameObject.SetActive(true);
+        Invoke("disableMelee", 1f);
+    }
+    private void disableMelee()
+    {
+        meleeWeapon.gameObject.SetActive(false);
+
     }
 
 }
