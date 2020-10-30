@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
 
     public Transform meleeWeapon;
     public Transform rangedWeapon;
+    public Transform shield;
 
     private Vector3 m_Velocity = Vector3.zero;
     private bool m_Grounded;            // Whether or not the player is grounded.
@@ -52,6 +53,10 @@ public class PlayerMovement : MonoBehaviour
             RangedAttack();
         }
 
+        if (Input.GetButtonDown("Shield"))
+        {
+            Shield();
+        }
     }
 
     private void FixedUpdate()
@@ -104,6 +109,21 @@ public class PlayerMovement : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         currentColiisions.Remove(collision.collider);
+    }
+
+    public void Shield()
+    {
+        if (shield.gameObject.activeSelf == false)
+        {
+            Debug.Log("shield");
+            shield.gameObject.SetActive(true);
+            gameObject.GetComponent<Player>().Shield(/*shield duration: */ 1f);
+            Invoke("disableShield", 1f);
+        }
+    }
+    private void disableShield()
+    {
+        shield.gameObject.SetActive(false);
     }
 
     public void MeleeAttack()

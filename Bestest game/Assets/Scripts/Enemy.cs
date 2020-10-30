@@ -2,12 +2,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
     [SerializeField]ParticleSystem deathAnimation;
     private Rigidbody2D m_Rigidbody2D;
+
+    public Image HealthBar;
     int hp = 100;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,6 +57,7 @@ public class Enemy : MonoBehaviour
             m_Rigidbody2D.AddForce(new Vector2(-knockback, 0));
 
         hp -= baseDamage;
+        HealthBar.fillAmount = hp / 100f;
         Debug.Log("Enemy took " + baseDamage + " damage and has " + hp +" hp left");
         if (hp <= 0)
             Die();
