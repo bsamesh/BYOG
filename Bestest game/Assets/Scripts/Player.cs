@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     public Image ShieldBar;
     public static Action PlayerTookDamage;
     public static Animator animator;
+    public static Action PlayerDied;
+    public static bool lostControl = false;
 
     private void Awake()
     {
@@ -41,7 +43,8 @@ public class Player : MonoBehaviour
         if (isShielded) return false;
         hp -= baseDamage;
 
-        //PlayerTookDamage.Invoke();
+        if (PlayerTookDamage != null)
+            PlayerTookDamage.Invoke();
 
         Debug.Log("player took " + baseDamage + " damage and has " + hp + "hp left");
         if (hp <= 0)
@@ -57,6 +60,8 @@ public class Player : MonoBehaviour
     private static void Die()
     {
         animator.SetTrigger("DeathTrigger");
+        if (PlayerDied != null)
+            PlayerDied.Invoke();
     }
 
     // Update is called once per frame

@@ -53,11 +53,15 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         animator = gameObject.GetComponent<Animator>();
+        Player.PlayerDied += delegate { enabled = false; };
+        UIManager.pausePressed += delegate { enabled = !enabled; };
     }
 
     void Update()
     {
-        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+        if (!Player.lostControl)
+        {
+            horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
 
         if (Input.GetButtonDown("Jump"))
@@ -71,23 +75,24 @@ public class PlayerMovement : MonoBehaviour
             glide = false;
         }
 
-        if (Input.GetButtonDown("Melee"))
-        {
-            MeleeAttack();
-        }
+            if (Input.GetButtonDown("Melee"))
+            {
+                MeleeAttack();
+            }
 
-        if (Input.GetButtonDown("Ranged"))
-        {
-            RangedAttack();
-        }
+            if (Input.GetButtonDown("Ranged"))
+            {
+                RangedAttack();
+            }
 
-        if (Input.GetButtonDown("Shield"))
-        {
-            Shield();
-        }
-        if (Input.GetButtonDown("Dash"))
-        {
-            dash = true;
+            if (Input.GetButtonDown("Shield"))
+            {
+                Shield();
+            }
+            if (Input.GetButtonDown("Dash"))
+            {
+                dash = true;
+            }
         }
     }
 

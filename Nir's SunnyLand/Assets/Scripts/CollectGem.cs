@@ -20,7 +20,6 @@ public class CollectGem : MonoBehaviour
             gotCollected = true;
             return;
         }
-
     }
 
     //collision version
