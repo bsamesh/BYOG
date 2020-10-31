@@ -66,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (Input.GetButtonUp("Jump"))
         {
+            animator.SetBool("Glide", false);
             glide = false;
         }
 
@@ -122,11 +123,15 @@ public class PlayerMovement : MonoBehaviour
                     showSwastika();
             }
             else
+            {
                 m_Rigidbody2D.gravityScale = 0.55f;
+                animator.SetBool("Glide", true);
+            }
         }
         else if (glide)
         {
             m_Rigidbody2D.gravityScale = defaultGravity;
+            animator.SetBool("Glide", false);
         }
         Move(horizontalMove * Time.fixedDeltaTime);
         jump = false;
@@ -137,29 +142,38 @@ public class PlayerMovement : MonoBehaviour
     public void Move(float move)
     {
         if (move > 0)
+        {
             lookingRight = true;
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
         if (move < 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0);
             lookingRight = false;
-        if (move != 0)
-            animator.SetBool("Moving", true);
-        if (m_Rigidbody2D.velocity.y > 0)
-        {
-            animator.SetBool("Fall", false);
         }
-        else if (m_Rigidbody2D.velocity.y < -0.01)
+        if (!animator.GetBool("AirDash"))
         {
-            animator.SetBool("Jump", false);
-            animator.SetBool("DoubleJump", false);
-            animator.SetBool("Fall", true);
+            if (move != 0)
+                animator.SetBool("Moving", true);
+            if (m_Rigidbody2D.velocity.y > 0)
+            {
+                animator.SetBool("Fall", false);
+            }
+            else if (m_Rigidbody2D.velocity.y < -0.01)
+            {
+                animator.SetBool("Jump", false);
+                animator.SetBool("DoubleJump", false);
+                animator.SetBool("Fall", true);
+            }
+            else
+            {
+                animator.SetBool("Fall", false);
+                animator.SetBool("DoubleJump", false);
+                animator.SetBool("Jump", false);
+            }
+            if (move == 0)
+                animator.SetBool("Moving", false);
         }
-        else
-        {
-            animator.SetBool("Fall", false);
-            animator.SetBool("DoubleJump", false);
-            animator.SetBool("Jump", false);
-        }
-        if (move == 0)
-            animator.SetBool("Moving", false);
         // Move the character by finding the target velocity
         Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
         if (isMovingTowardsWall)
@@ -170,6 +184,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
+                animator.SetBool("WallSlide", true);
                 m_Rigidbody2D.gravityScale = 0.5f;
                 targetVelocity.y = 0;
             }
@@ -177,6 +192,11 @@ public class PlayerMovement : MonoBehaviour
         else if (!glide)
         {
             m_Rigidbody2D.gravityScale = defaultGravity;
+            animator.SetBool("WallSlide", false);
+        }
+        else
+        {
+            animator.SetBool("WallSlide", false);
         }
         // And then smoothing it out and applying it to the character
         m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
@@ -192,6 +212,8 @@ public class PlayerMovement : MonoBehaviour
                 }
                 else
                 {
+                    animator.SetBool("GDash", true);
+                    Invoke("DisableGDash", 0.3f);
                     float horizontalForce = lookingRight ? m_JumpForce : -m_JumpForce;
                     horizontalForce *= 4;
                     m_Rigidbody2D.AddForce(new Vector2(horizontalForce, 0f));
@@ -209,23 +231,14 @@ public class PlayerMovement : MonoBehaviour
                     horizontalForce *= 4;
                     if (hasDashAvailable)
                     {
+                        animator.SetBool("AirDash", true);
+                        Invoke("DisableAirDash", 0.3f);
                         m_Rigidbody2D.AddForce(new Vector2(horizontalForce, 0f));
                         hasDashAvailable = false;
                     }
                 }
             }
         }
-
-        // If the player should jump...
-
-        /*if (m_Grounded && jump)
-        {
-            // Add a vertical force to the player.
-            m_Grounded = false;
-            m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
-            Debug.Log("added jump force");
-            jumpsAvailable--;
-        }*/
         if (jump)
         {
             if (isMovingTowardsWall && canWallslide)
@@ -259,6 +272,16 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+    }
+
+    private void DisableGDash()
+    {
+        animator.SetBool("GDash", false);
+    }
+
+    private void DisableAirDash()
+    {
+        animator.SetBool("AirDash", false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -332,11 +355,12 @@ public class PlayerMovement : MonoBehaviour
             showSwastika();
             return;
         }
-        if (meleeWeapon.gameObject.activeSelf == false)
+        if (meleeWeapon.gameObject.activeSelf == false && rangedWeapon.gameObject.activeSelf == false)
         {
             Debug.Log("melee");
+            animator.SetBool("Attack", true);
             meleeWeapon.gameObject.SetActive(true);
-            Invoke("disableMelee", 1f);
+            Invoke("disableMelee", 0.5f);
         }
     }
     public void RangedAttack()
@@ -346,9 +370,10 @@ public class PlayerMovement : MonoBehaviour
             showSwastika();
             return;
         }
-        if (rangedWeapon.gameObject.activeSelf == false)
+        if (rangedWeapon.gameObject.activeSelf == false && meleeWeapon.gameObject.activeSelf == false)
         {
             Debug.Log("ranged");
+            animator.SetBool("Ranged", true);
             rangedWeapon.gameObject.SetActive(true);
             rangedWeapon.gameObject.GetComponent<RangedWeapon>().Shoot(lookingRight);
             Invoke("disableRanged", 0.5f);
@@ -357,11 +382,14 @@ public class PlayerMovement : MonoBehaviour
     private void disableRanged()
     {
         rangedWeapon.gameObject.SetActive(false);
+        animator.SetBool("Ranged", false);
+
 
     }
     private void disableMelee()
     {
         meleeWeapon.gameObject.SetActive(false);
+        animator.SetBool("Attack", false);
 
     }
     private void showSwastika()
