@@ -99,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (collider == null || collider.gameObject == null)
                 continue;                    
-            if (collider.gameObject.layer.Equals(LayerMask.NameToLayer("wall")))
+            if (collider.gameObject.layer.Equals(LayerMask.NameToLayer("Walls")))
             {
                 isWallToMyLeft = collider.gameObject.transform.position.x < transform.position.x;
                 if ((isWallToMyLeft && horizontalMove < 0) || (!isWallToMyLeft && horizontalMove > 0))
@@ -264,7 +264,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer.Equals(LayerMask.NameToLayer("spikes")))
+        if (collision.gameObject.layer.Equals(LayerMask.NameToLayer("Spikes")))
         {
             Player.Damage(spikeDamage);
         }
