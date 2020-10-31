@@ -69,7 +69,6 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonUp("Jump"))
         {
             glide = false;
-            Player.Damage(35);
         }
 
         if (Input.GetButtonDown("Melee"))
