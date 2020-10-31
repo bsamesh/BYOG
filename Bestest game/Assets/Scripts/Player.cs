@@ -6,10 +6,12 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    static int hp = 100;
+    public static int hp = 100;
     static bool isShielded = false;
     static float shieldDuration = 0;
     public Image ShieldBar;
+    public static Action PlayerTookDamage;
+
 
     // Start is called before the first frame update
     void Start()
@@ -30,16 +32,20 @@ public class Player : MonoBehaviour
 
     public static bool Damage(int baseDamage)
     {
-        if(hp <= 0) return false;
-        Debug.Log("player took " + baseDamage + " damage and has " + hp + "hp left");
+        if (hp <= 0) return false;
         if (isShielded) return false;
         hp -= baseDamage;
+
+        //PlayerTookDamage.Invoke();
+
+        Debug.Log("player took " + baseDamage + " damage and has " + hp + "hp left");
         if (hp <= 0)
         {
             Die();
             return false;
         }
         Shield(2f);
+
         return true;
     }
 
@@ -47,7 +53,7 @@ public class Player : MonoBehaviour
     {
         //death
     }
-
+    
     // Update is called once per frame
     void Update()
     {

@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform rangedWeapon;
     public Transform shield;
     public Transform swastika;
+    public Animator animator;
 
     private Vector3 m_Velocity = Vector3.zero;
     private bool m_Grounded;            // Whether or not the player is grounded.
@@ -50,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-
+        animator = gameObject.GetComponent<Animator>();
     }
 
     void Update()
@@ -140,6 +141,26 @@ public class PlayerMovement : MonoBehaviour
             lookingRight = true;
         if (move < 0)
             lookingRight = false;
+        if (move != 0)
+            animator.SetBool("Moving", true);
+        if (m_Rigidbody2D.velocity.y > 0)
+        {
+            animator.SetBool("Fall", false);
+        }
+        else if (m_Rigidbody2D.velocity.y < -0.01)
+        {
+            animator.SetBool("Jump", false);
+            animator.SetBool("DoubleJump", false);
+            animator.SetBool("Fall", true);
+        }
+        else
+        {
+            animator.SetBool("Fall", false);
+            animator.SetBool("DoubleJump", false);
+            animator.SetBool("Jump", false);
+        }
+        if (move == 0)
+            animator.SetBool("Moving", false);
         // Move the character by finding the target velocity
         Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
         if (isMovingTowardsWall)
@@ -216,6 +237,8 @@ public class PlayerMovement : MonoBehaviour
             }
             else if (m_Grounded)
             {
+                animator.SetBool("Jump", true);
+                animator.SetBool("Fall", false);
                 m_Grounded = false;
                 m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
                 jumpsAvailable--;
@@ -228,7 +251,9 @@ public class PlayerMovement : MonoBehaviour
                 }
                 else
                 {
+                    animator.SetBool("DoubleJump", true);
                     m_Grounded = false;
+                    m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, 0f);
                     m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
                     jumpsAvailable--;
                 }
@@ -251,8 +276,19 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.layer.Equals(LayerMask.NameToLayer("ground")))
         {
             m_Grounded = true;
+            m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, 0f);
             hasDashAvailable = true;
             jumpsAvailable = 2;
+        }
+        if (collision.gameObject.GetComponent<Enemy>() != null)
+        {
+            if (Player.Damage(collision.gameObject.GetComponent<Enemy>().damage))
+            {
+                if(collision.transform.position.x < transform.position.x)
+                    m_Rigidbody2D.AddForce(new Vector2(0.5f * m_JumpForce, 0.2f * m_JumpForce));
+                else
+                    m_Rigidbody2D.AddForce(new Vector2(-0.5f * m_JumpForce, 0.2f * m_JumpForce));
+            }
         }
     }
 
@@ -261,7 +297,7 @@ public class PlayerMovement : MonoBehaviour
         currentColiisions.Remove(collision.collider);
         if (collision.gameObject.layer.Equals(LayerMask.NameToLayer("ground")))
         {
-            m_Grounded = false;
+            //m_Grounded = false;
         }
     }
 

@@ -11,13 +11,18 @@ public class Enemy : MonoBehaviour
     public Transform rightEdge;
     private Rigidbody2D m_Rigidbody2D;
     float patrolSpeed = 2f;
+    float defaultPatrolSpeed = 2f;
     bool facingRight = true;
     bool isAttacking = false;
     bool canMove = true;
     public Transform PlayerTransform;
+    public Transform attackIndicator;
+    public Transform weapon;
 
     public Image HealthBar;
     int hp = 100;
+
+    public int damage = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -40,21 +45,35 @@ public class Enemy : MonoBehaviour
     {
         if (isAttacking)
         {
+            if(Math.Abs(PlayerTransform.position.x - transform.position.x) < 2f && !weapon.gameObject.activeSelf)
+            {
+                weapon.gameObject.SetActive(true);
+                Invoke("SheateWeapon", 1f);
+            }
             bool isPlayerToMyLeft = PlayerTransform.position.x < transform.position.x;
             facingRight = isPlayerToMyLeft ? false : true;
-            patrolSpeed = facingRight ? Math.Abs(patrolSpeed) : -Math.Abs(patrolSpeed);
+            patrolSpeed = facingRight ? defaultPatrolSpeed : -defaultPatrolSpeed;
+            if (facingRight && closeEnough(rightEdge.localPosition.x, transform.localPosition.x))
+            {
+                patrolSpeed = 0;
+            }
+            else if (!facingRight && closeEnough(leftEdge.localPosition.x, transform.localPosition.x))
+            {
+                patrolSpeed = 0;
+            }
+            
         }
         else
         {
             if (facingRight && closeEnough(rightEdge.localPosition.x, transform.localPosition.x))
             {
                 facingRight = !facingRight;
-                patrolSpeed = -patrolSpeed;
+                patrolSpeed = -defaultPatrolSpeed;
             }
             else if (!facingRight && closeEnough(leftEdge.localPosition.x, transform.localPosition.x))
             {
                 facingRight = !facingRight;
-                patrolSpeed = -patrolSpeed;
+                patrolSpeed = defaultPatrolSpeed;
             }
         }
         if(canMove)
@@ -64,11 +83,13 @@ public class Enemy : MonoBehaviour
     internal void startAttack()
     {
         isAttacking = true;
+        attackIndicator.gameObject.SetActive(true);
     }
 
     internal void stopAttack()
     {
         isAttacking = false;
+        attackIndicator.gameObject.SetActive(false);
     }
 
     private bool closeEnough(float x1, float x2)
@@ -98,7 +119,6 @@ public class Enemy : MonoBehaviour
 
         }
     }
-
     public void Damage(int baseDamage, int knockback, bool hittingRight)
     {
         if (hittingRight)
@@ -119,7 +139,10 @@ public class Enemy : MonoBehaviour
         if (hp <= 0)
             Die();
     }
-
+    private void SheateWeapon()
+    {
+        weapon.gameObject.SetActive(false);
+    }
     private void EnableMove()
     {
         canMove = true;
@@ -128,6 +151,6 @@ public class Enemy : MonoBehaviour
     private void Die()
     {
         deathAnimation.gameObject.SetActive(true);
-        Destroy(gameObject, 7f);
+        Destroy(gameObject.transform.parent.gameObject, 1f);
     }
 }
