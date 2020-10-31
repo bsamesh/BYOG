@@ -375,7 +375,7 @@ MonoBehaviour:
     m_CachedPref: 50
     m_ControlHash: 1964396721
     m_PrefName: Preview_TilemapBrushInspector
-  m_Palette: {fileID: 2651995315462913452, guid: ac31a7cc87435a24ab77efc269566716,
+  m_Palette: {fileID: 2966284245785613204, guid: b4ea069b4f3b9cb468f9b787364f56c7,
     type: 3}
 --- !u!114 &16
 MonoBehaviour:
@@ -505,9 +505,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 35.9114, y: 8.462555, z: -25.938154}
+    m_Target: {x: 27.710472, y: 8.638718, z: -75.67578}
     speed: 2
-    m_Value: {x: 35.823162, y: 8.654788, z: -25.760784}
+    m_Value: {x: 27.710472, y: 8.638718, z: -75.67578}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -557,9 +557,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 47.01601
+    m_Target: 22.205677
     speed: 2
-    m_Value: 49.231422
+    m_Value: 21.249453
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -613,9 +613,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: d2480000
-      m_LastClickedID: 18642
-      m_ExpandedIDs: aee9ffff64faffff5cfbffffca370000d0370000cc480000d2480000
+      m_SelectedIDs: 9e450000
+      m_LastClickedID: 17822
+      m_ExpandedIDs: 00ebffff82faffff5cfbffffc4370000ca370000984500009e450000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -691,7 +691,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 8c370000
     m_LastClickedID: 14220
-    m_ExpandedIDs: 000000006a350000
+    m_ExpandedIDs: 0000000066350000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -719,7 +719,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000006a350000
+    m_ExpandedIDs: 0000000066350000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
