@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public Image ShieldBar;
     public static Action PlayerTookDamage;
     public static Action PlayerDied;
+    public static bool lostControl = false;
 
     // Start is called before the first frame update
     void Start()

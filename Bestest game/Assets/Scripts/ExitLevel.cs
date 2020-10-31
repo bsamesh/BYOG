@@ -14,6 +14,7 @@ public class ExitLevel : MonoBehaviour
             wasTouched = true;
             Debug.Log("Exit Level!");
             FindObjectOfType<LevelController>().NextLevel();
+            Player.lostControl = false;
             return;
         }
     }

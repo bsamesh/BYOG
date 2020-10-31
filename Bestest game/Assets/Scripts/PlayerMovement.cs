@@ -58,36 +58,39 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+        if (!Player.lostControl)
+        {
+            horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
 
-        if (Input.GetButtonDown("Jump"))
-        {
-            jump = true;
-            glide = true;
-        }
-        if (Input.GetButtonUp("Jump"))
-        {
-            glide = false;
-        }
+            if (Input.GetButtonDown("Jump"))
+            {
+                jump = true;
+                glide = true;
+            }
+            if (Input.GetButtonUp("Jump"))
+            {
+                glide = false;
+            }
 
-        if (Input.GetButtonDown("Melee"))
-        {
-            MeleeAttack();
-        }
+            if (Input.GetButtonDown("Melee"))
+            {
+                MeleeAttack();
+            }
 
-        if (Input.GetButtonDown("Ranged"))
-        {
-            RangedAttack();
-        }
+            if (Input.GetButtonDown("Ranged"))
+            {
+                RangedAttack();
+            }
 
-        if (Input.GetButtonDown("Shield"))
-        {
-            Shield();
-        }
-        if (Input.GetButtonDown("Dash"))
-        {
-            dash = true;
+            if (Input.GetButtonDown("Shield"))
+            {
+                Shield();
+            }
+            if (Input.GetButtonDown("Dash"))
+            {
+                dash = true;
+            }
         }
     }
 
