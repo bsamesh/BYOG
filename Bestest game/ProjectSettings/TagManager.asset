@@ -14,8 +14,12 @@ TagManager:
   - 
   - 
   - ground
-  - wall
-  - spikes
+  - Background
+  - Foreground
+  - Walls
+  - Spikes
+  - 
+  - 
   - 
   - 
   - 

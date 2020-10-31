@@ -1,0 +1,17 @@
+-Double Jump
+-Airborn Dash
+-Ground Dash
+-Gliding
+-Melee Attack
+-Ranged Attack
+-Shield
+-Wall Slide
+
+idea: Robot that loses parts after crushing and loses abilitys
+
+-Level_1: Tutorial
+-Level_2: No Ground Dash
+-Level_3: No Double Jump
+-Level_4: No Ranged Attack
+-Level_5: No Gliding
+-Level_6: No Melee Attack
