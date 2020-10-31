@@ -115,7 +115,7 @@ MonoBehaviour:
   m_MinSize: {x: 679, y: 492}
   m_MaxSize: {x: 14002, y: 14042}
   vertical: 0
-  controlID: 10802
+  controlID: 6051
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
-  controlID: 10803
+  controlID: 6052
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 221}
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
-  controlID: 10804
+  controlID: 6053
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -421,7 +421,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 12d0ffff96d0ffff88d4ffffecd4fffff2d5ffff90e1fffff4e1ffff62e2ffffc6e2ffff2ae3ffffb0e4ffff18e7ffff94e7ffff0ce8ffff88e8ffff2ae9ffff32ecffffd0ecffffdeecffff46edffff5eedffffc6edffffd0eeffff98f9ffff4afaffff5cfaffff5cfbffffec5d0000fa5d0000
+      m_ExpandedIDs: a0f9ffffbcf9ffff5cfbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -481,9 +481,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -2.4575117, y: 4.565293, z: -3.0769405}
+    m_Target: {x: -22.875656, y: 569.45734, z: -352.29596}
     speed: 2
-    m_Value: {x: -2.4575117, y: 4.565293, z: -3.0769405}
+    m_Value: {x: -22.875656, y: 569.45734, z: -352.29596}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -533,9 +533,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 5.3107843
+    m_Target: 647.85913
     speed: 2
-    m_Value: 5.3107843
+    m_Value: 647.85913
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -625,20 +625,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets/Arts
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/Arts
   m_LastFoldersGridSize: -1
   m_LastProjectPath: E:\BYOG2020\BYOG\Bestest game
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: d6370000
-    m_LastClickedID: 14294
-    m_ExpandedIDs: 00000000c0370000c2370000c4370000
+    m_SelectedIDs: 223b0000
+    m_LastClickedID: 15138
+    m_ExpandedIDs: 00000000ac370000ae370000b0370000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -666,7 +666,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000c0370000c2370000c4370000
+    m_ExpandedIDs: 00000000ac370000ae370000b0370000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

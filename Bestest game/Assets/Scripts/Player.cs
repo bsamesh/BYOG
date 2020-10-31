@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     static float shieldDuration = 0;
     public Image ShieldBar;
     public static Action PlayerTookDamage;
-
+    public static Action PlayerDied;
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +36,8 @@ public class Player : MonoBehaviour
         if (isShielded) return false;
         hp -= baseDamage;
 
-        //PlayerTookDamage.Invoke();
+        if (PlayerTookDamage != null)
+            PlayerTookDamage.Invoke();
 
         Debug.Log("player took " + baseDamage + " damage and has " + hp + "hp left");
         if (hp <= 0)
@@ -51,7 +52,8 @@ public class Player : MonoBehaviour
 
     private static void Die()
     {
-        //death
+        if (PlayerDied != null)
+            PlayerDied.Invoke();
     }
     
     // Update is called once per frame
