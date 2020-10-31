@@ -328,7 +328,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 80
-        y: 128
+        y: 144
         width: 16
         height: 16
       alignment: 0
@@ -727,7 +727,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 80
-        y: 144
+        y: 128
         width: 16
         height: 16
       alignment: 0
@@ -768,7 +768,7 @@ TextureImporter:
       name: Tileset&Items_16
       rect:
         serializedVersion: 2
-        x: 72
+        x: 71
         y: 144
         width: 16
         height: 16
