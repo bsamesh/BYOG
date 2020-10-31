@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     bool glide = false;
     List<Collider2D> currentColiisions;
     float horizontalMove = 0;
+    public bool shieldOnCooldown = false;
 
     bool dash = false;
     bool hasDashAvailable = true;
@@ -185,7 +186,7 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 animator.SetBool("WallSlide", true);
-                m_Rigidbody2D.gravityScale = 0.5f;
+                m_Rigidbody2D.gravityScale = 1.1f;
                 targetVelocity.y = 0;
             }
         }
@@ -323,13 +324,13 @@ public class PlayerMovement : MonoBehaviour
         currentColiisions.Remove(collision.collider);
         if (collision.gameObject.layer.Equals(LayerMask.NameToLayer("ground")))
         {
-            //m_Grounded = false;
+            m_Grounded = false;
         }
     }
 
     public void Shield()
     {
-        if (!canShield)
+        if (!canShield || shieldOnCooldown)
         {
             showSwastika();
             return;
@@ -338,10 +339,16 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("shield");
             shield.gameObject.SetActive(true);
+            shieldOnCooldown = true;
             Player.Shield(1f);
             //gameObject.GetComponent<Player>().Shield(/*shield duration: */ 1f);
             Invoke("disableShield", 1f);
+            Invoke("shieldOffCooldown", 3f);
         }
+    }
+    private void shieldOffCooldown()
+    {
+        shieldOnCooldown = false;
     }
     private void disableShield()
     {

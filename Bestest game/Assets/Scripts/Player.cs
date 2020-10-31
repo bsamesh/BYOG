@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     public static void Shield(float time)
@@ -58,7 +58,7 @@ public class Player : MonoBehaviour
     {
         animator.SetTrigger("DeathTrigger");
     }
-    
+
     // Update is called once per frame
     void Update()
     {
