@@ -50,7 +50,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-
+        Player.PlayerDied += delegate { enabled = false; } ;
+        UIManager.pausePressed += delegate { enabled = !enabled; };
     }
 
     void Update()
@@ -66,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonUp("Jump"))
         {
             glide = false;
+            Player.Damage(35);
         }
 
         if (Input.GetButtonDown("Melee"))
