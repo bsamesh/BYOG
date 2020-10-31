@@ -23,11 +23,12 @@ public class Enemy : MonoBehaviour
     int hp = 100;
 
     public int damage = 10;
+    public Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        animator = gameObject.GetComponent<Animator>();
     }
     private void Awake()
     {
@@ -47,8 +48,12 @@ public class Enemy : MonoBehaviour
         {
             if(Math.Abs(PlayerTransform.position.x - transform.position.x) < 2f && !weapon.gameObject.activeSelf)
             {
-                weapon.gameObject.SetActive(true);
-                Invoke("SheateWeapon", 1f);
+                if (!weapon.gameObject.activeSelf)
+                {
+                    animator.SetBool("Attack", true);
+                    weapon.gameObject.SetActive(true);
+                    Invoke("SheateWeapon", 1f);
+                }
             }
             bool isPlayerToMyLeft = PlayerTransform.position.x < transform.position.x;
             facingRight = isPlayerToMyLeft ? false : true;
@@ -76,8 +81,19 @@ public class Enemy : MonoBehaviour
                 patrolSpeed = defaultPatrolSpeed;
             }
         }
-        if(canMove)
+        if (canMove)
+        {
             m_Rigidbody2D.velocity = new Vector2(patrolSpeed, 0);
+            animator.SetBool("Move", true);
+        }
+        else
+            animator.SetBool("Move", false);
+        if (facingRight)
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
+        else
+            transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 
     internal void startAttack()
@@ -141,6 +157,7 @@ public class Enemy : MonoBehaviour
     }
     private void SheateWeapon()
     {
+        animator.SetBool("Attack", false);
         weapon.gameObject.SetActive(false);
     }
     private void EnableMove()
@@ -150,7 +167,8 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
-        deathAnimation.gameObject.SetActive(true);
+        animator.SetTrigger("Death");
+        //deathAnimation.gameObject.SetActive(true);
         Destroy(gameObject.transform.parent.gameObject, 1f);
     }
 }

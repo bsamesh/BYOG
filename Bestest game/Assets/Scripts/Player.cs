@@ -11,12 +11,17 @@ public class Player : MonoBehaviour
     static float shieldDuration = 0;
     public Image ShieldBar;
     public static Action PlayerTookDamage;
+    public static Animator animator;
 
+    private void Awake()
+    {
+        animator = gameObject.GetComponent<Animator>();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     public static void Shield(float time)
@@ -51,9 +56,9 @@ public class Player : MonoBehaviour
 
     private static void Die()
     {
-        //death
+        animator.SetTrigger("DeathTrigger");
     }
-    
+
     // Update is called once per frame
     void Update()
     {

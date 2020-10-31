@@ -31,7 +31,7 @@ public class RangedWeapon : MonoBehaviour
         if (!shooting) 
         {
             shooting = true;
-            Transform temp = Instantiate(bullet, transform);
+            Transform temp = Instantiate(bullet);
             temp.gameObject.GetComponent<Bullet>().Shoot(right);
             Destroy(temp.gameObject, 0.5f);
             Invoke("StopShooting", 0.5f);
