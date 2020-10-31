@@ -635,8 +635,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7733662084393821551}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.993, y: -0.046, z: 0}
-  m_LocalScale: {x: 0.62738764, y: 0.62738764, z: 0.62738764}
+  m_LocalPosition: {x: -6.11, y: 3.48, z: 0}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children:
   - {fileID: 7733662084609236399}
   - {fileID: 7733662083846814571}
@@ -707,10 +707,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1.5
+  m_Mass: 1.2
   m_LinearDrag: 0.5
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -728,13 +728,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fa8b91124642184c9207073ba90cc72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_JumpForce: 400
+  m_JumpForce: 700
   m_MovementSmoothing: 0.05
-  runSpeed: 17
+  runSpeed: 40
   meleeWeapon: {fileID: 7733662084609236399}
   rangedWeapon: {fileID: 7733662083846814571}
   shield: {fileID: 7733662083192675445}
-  swastika: {fileID: 0}
+  swastika: {fileID: 7425559359993512309}
   animator: {fileID: 0}
   canMelee: 1
   canRanged: 1
