@@ -125017,7 +125017,7 @@ GameObject:
   - component: {fileID: 1337734160}
   - component: {fileID: 1337734159}
   - component: {fileID: 1337734158}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125047,7 +125047,7 @@ TilemapCollider2D:
   m_GameObject: {fileID: 1337734156}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 0c206a1ee3b17c64b86f3ffe8947bdd0, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -126834,6 +126834,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7068869170428778122, guid: 648a573e5c2646c4d8cd334ef8a577f1,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 52d84c10034ac1448b4bc4be1c5eaf67, type: 2}
     - target: {fileID: 7733662084393821538, guid: 648a573e5c2646c4d8cd334ef8a577f1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -126934,7 +126939,7 @@ GameObject:
   - component: {fileID: 1637930521}
   - component: {fileID: 1637930520}
   - component: {fileID: 1637930519}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: Spikes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126965,7 +126970,7 @@ TilemapCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

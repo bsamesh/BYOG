@@ -337,7 +337,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!canShield || shieldOnCooldown)
         {
-            showSwastika();
+            if(!canShield)
+                showSwastika();
             return;
         }
         if (shield.gameObject.activeSelf == false)
