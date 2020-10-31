@@ -53,27 +53,42 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         animator = gameObject.GetComponent<Animator>();
-        Player.PlayerDied += delegate { enabled = false; };
-        UIManager.pausePressed += delegate { enabled = !enabled; };
+        Player.PlayerDied += DisableInput;
+        //if(this != null)
+        UIManager.pausePressed += DisableInput;
     }
+
+    private void DisableInput()
+    {
+        enabled = !enabled;
+    }
+
+    private void OnDestroy()
+    {
+        Player.PlayerDied -= DisableInput;
+        UIManager.pausePressed -= DisableInput;
+    }
+
 
     void Update()
     {
+        if (UIManager.gamePaused || UIManager.gameOver)
+            return;
         if (!Player.lostControl)
         {
             horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
 
-        if (Input.GetButtonDown("Jump"))
-        {
-            jump = true;
-            glide = true;
-        }
-        if (Input.GetButtonUp("Jump"))
-        {
-            animator.SetBool("Glide", false);
-            glide = false;
-        }
+            if (Input.GetButtonDown("Jump"))
+            {
+                jump = true;
+                glide = true;
+            }
+            if (Input.GetButtonUp("Jump"))
+            {
+                animator.SetBool("Glide", false);
+                glide = false;
+            }
 
             if (Input.GetButtonDown("Melee"))
             {
@@ -98,6 +113,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (UIManager.gamePaused || UIManager.gameOver)
+            return;
         //m_Grounded = false;
 
         isMovingTowardsWall = false;
@@ -105,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
         foreach (Collider2D collider in currentColiisions)
         {
             if (collider == null || collider.gameObject == null)
-                continue;                    
+                continue;
             if (collider.gameObject.layer.Equals(LayerMask.NameToLayer("Walls")))
             {
                 if ((isWallToMyLeft && horizontalMove < 0) || (!isWallToMyLeft && horizontalMove > 0))
@@ -316,7 +333,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Player.Damage(collision.gameObject.GetComponent<Enemy>().damage))
             {
-                if(collision.transform.position.x < transform.position.x)
+                if (collision.transform.position.x < transform.position.x)
                     m_Rigidbody2D.AddForce(new Vector2(0.5f * m_JumpForce, 0.2f * m_JumpForce));
                 else
                     m_Rigidbody2D.AddForce(new Vector2(-0.5f * m_JumpForce, 0.2f * m_JumpForce));
@@ -337,7 +354,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!canShield || shieldOnCooldown)
         {
-            if(!canShield)
+            if (!canShield)
                 showSwastika();
             return;
         }

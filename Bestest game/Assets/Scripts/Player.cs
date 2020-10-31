@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    public static int hp = 100;
+    public static int maxHp = 100;
+    public static int hp = maxHp;
     static bool isShielded = false;
     static float shieldDuration = 0;
     public Image ShieldBar;

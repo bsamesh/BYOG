@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -9,7 +10,8 @@ public class UIManager : MonoBehaviour
     public GameObject gameOverScreen;
     public GameObject pauseScreen;
 
-    private bool gameOver = false;
+    public static bool gameOver = false;
+    public static bool gamePaused = false;
 
     public static Action pausePressed;
 
@@ -30,6 +32,20 @@ public class UIManager : MonoBehaviour
     void GameEnded()
     {
         gameOver = true;
-        gameOverScreen.SetActive(true);
+        if (gameOverScreen != null)
+            gameOverScreen.SetActive(true);
+    }
+
+
+    public void RestartLevel()
+    {
+        Player.hp = Player.maxHp;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        gameOver = false;
+    }
+
+    public void GoToMenu()
+    {
+        //
     }
 }
