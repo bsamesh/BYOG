@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform meleeWeapon;
     public Transform rangedWeapon;
     public Transform shield;
+    public Transform swastika;
 
     private Vector3 m_Velocity = Vector3.zero;
     private bool m_Grounded;            // Whether or not the player is grounded.
@@ -27,6 +28,16 @@ public class PlayerMovement : MonoBehaviour
     float defaultGravity;
     bool isMovingTowardsWall = false;
     bool isWallToMyLeft;
+
+    public bool canMelee;
+    public bool canRanged;
+    public bool canGroundDash;
+    public bool canAirDash;
+    public bool canShield;
+    public bool canDoubleJump;
+    public bool canWallslide;
+    public bool canGlide;
+
 
     private void Awake()
     {
@@ -101,9 +112,15 @@ public class PlayerMovement : MonoBehaviour
             }
         }*/
         Debug.Log("Velocity: " + m_Rigidbody2D.velocity.y + ", glide: "+glide);
-        if (m_Rigidbody2D.velocity.y <= 0 && glide)
+        if (m_Rigidbody2D.velocity.y <= -0.3 && glide && !m_Grounded)
         {
-            m_Rigidbody2D.gravityScale = 0.55f;
+            if (!canGlide)
+            {
+                if(m_Rigidbody2D.velocity.y <= -2)
+                    showSwastika();
+            }
+            else
+                m_Rigidbody2D.gravityScale = 0.55f;
         }
         else if(glide)
         {
@@ -125,8 +142,15 @@ public class PlayerMovement : MonoBehaviour
         Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
         if (isMovingTowardsWall)
         {
-            m_Rigidbody2D.gravityScale = 0.5f;
-            targetVelocity.y = 0;
+            if (!canWallslide)
+            {
+                showSwastika();
+            }
+            else
+            {
+                m_Rigidbody2D.gravityScale = 0.5f;
+                targetVelocity.y = 0;
+            }
         }
         else if(!glide)
         {
@@ -139,18 +163,33 @@ public class PlayerMovement : MonoBehaviour
         {
             if (m_Grounded)
             {
-                float horizontalForce = lookingRight ? m_JumpForce : -m_JumpForce;
-                horizontalForce *= 4;
-                m_Rigidbody2D.AddForce(new Vector2(horizontalForce, 0f));
+
+                if (!canGroundDash)
+                {
+                    showSwastika();
+                }
+                else
+                {
+                    float horizontalForce = lookingRight ? m_JumpForce : -m_JumpForce;
+                    horizontalForce *= 4;
+                    m_Rigidbody2D.AddForce(new Vector2(horizontalForce, 0f));
+                }
             }
             else
             {
-                float horizontalForce = lookingRight ? m_JumpForce : -m_JumpForce;
-                horizontalForce *= 4;
-                if (hasDashAvailable)
+                if (!canAirDash)
                 {
-                    m_Rigidbody2D.AddForce(new Vector2(horizontalForce, 0f));
-                    hasDashAvailable = false;
+                    showSwastika();
+                }
+                else
+                {
+                    float horizontalForce = lookingRight ? m_JumpForce : -m_JumpForce;
+                    horizontalForce *= 4;
+                    if (hasDashAvailable)
+                    {
+                        m_Rigidbody2D.AddForce(new Vector2(horizontalForce, 0f));
+                        hasDashAvailable = false;
+                    }
                 }
             }
         }
@@ -167,17 +206,30 @@ public class PlayerMovement : MonoBehaviour
         }*/
         if (jump)
         {
-            if (isMovingTowardsWall)
+            if (isMovingTowardsWall && canWallslide)
             {
                 float horizontalForce = isWallToMyLeft ? m_JumpForce : -m_JumpForce;
                 horizontalForce *= 4;
                 m_Rigidbody2D.AddForce(new Vector2(horizontalForce, m_JumpForce));
             }
-            else if ((m_Grounded || jumpsAvailable > 0))
+            else if (m_Grounded)
             {
                 m_Grounded = false;
                 m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
                 jumpsAvailable--;
+            }
+            else if (jumpsAvailable > 0)
+            {
+                if (!canDoubleJump)
+                {
+                    showSwastika();
+                }
+                else
+                {
+                    m_Grounded = false;
+                    m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+                    jumpsAvailable--;
+                }
             }
         }
 
@@ -204,6 +256,11 @@ public class PlayerMovement : MonoBehaviour
 
     public void Shield()
     {
+        if (!canShield)
+        {
+            showSwastika();
+            return;
+        }
         if (shield.gameObject.activeSelf == false)
         {
             Debug.Log("shield");
@@ -219,6 +276,11 @@ public class PlayerMovement : MonoBehaviour
 
     public void MeleeAttack()
     {
+        if (!canMelee)
+        {
+            showSwastika();
+            return;
+        }
         if (meleeWeapon.gameObject.activeSelf == false)
         {
             Debug.Log("melee");
@@ -228,6 +290,11 @@ public class PlayerMovement : MonoBehaviour
     }
     public void RangedAttack()
     {
+        if (!canRanged)
+        {
+            showSwastika();
+            return;
+        }
         if (rangedWeapon.gameObject.activeSelf == false)
         {
             Debug.Log("ranged");
@@ -245,6 +312,18 @@ public class PlayerMovement : MonoBehaviour
     {
         meleeWeapon.gameObject.SetActive(false);
 
+    }
+    private void showSwastika()
+    {
+        if (!swastika.gameObject.activeSelf)
+        {
+            swastika.gameObject.SetActive(true);
+            Invoke("hideSwastika", 0.5f);
+        }
+    }
+    private void hideSwastika()
+    {
+        swastika.gameObject.SetActive(false);
     }
 
 }

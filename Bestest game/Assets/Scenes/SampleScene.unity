@@ -5582,6 +5582,51 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7733662084393821539, guid: 648a573e5c2646c4d8cd334ef8a577f1,
+        type: 3}
+      propertyPath: swastika
+      value: 
+      objectReference: {fileID: 7733662083597490699}
+    - target: {fileID: 7733662084393821539, guid: 648a573e5c2646c4d8cd334ef8a577f1,
+        type: 3}
+      propertyPath: canMelee
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7733662084393821539, guid: 648a573e5c2646c4d8cd334ef8a577f1,
+        type: 3}
+      propertyPath: canGroundDash
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7733662084393821539, guid: 648a573e5c2646c4d8cd334ef8a577f1,
+        type: 3}
+      propertyPath: canAirDash
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7733662084393821539, guid: 648a573e5c2646c4d8cd334ef8a577f1,
+        type: 3}
+      propertyPath: canRanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7733662084393821539, guid: 648a573e5c2646c4d8cd334ef8a577f1,
+        type: 3}
+      propertyPath: canDoubleJump
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7733662084393821539, guid: 648a573e5c2646c4d8cd334ef8a577f1,
+        type: 3}
+      propertyPath: canShield
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7733662084393821539, guid: 648a573e5c2646c4d8cd334ef8a577f1,
+        type: 3}
+      propertyPath: canWallslide
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7733662084393821539, guid: 648a573e5c2646c4d8cd334ef8a577f1,
+        type: 3}
+      propertyPath: canGlide
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7733662084393821551, guid: 648a573e5c2646c4d8cd334ef8a577f1,
         type: 3}
       propertyPath: m_Name
@@ -5589,3 +5634,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 648a573e5c2646c4d8cd334ef8a577f1, type: 3}
+--- !u!4 &7733662083597490699 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7425559359993512309, guid: 648a573e5c2646c4d8cd334ef8a577f1,
+    type: 3}
+  m_PrefabInstance: {fileID: 7733662083597490698}
+  m_PrefabAsset: {fileID: 0}
