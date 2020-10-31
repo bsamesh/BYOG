@@ -6,8 +6,15 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField]ParticleSystem deathAnimation;
+    [SerializeField] ParticleSystem deathAnimation;
+    public Transform leftEdge;
+    public Transform rightEdge;
     private Rigidbody2D m_Rigidbody2D;
+    float patrolSpeed = 2f;
+    bool facingRight = true;
+    bool isAttacking = false;
+    bool canMove = true;
+    public Transform PlayerTransform;
 
     public Image HealthBar;
     int hp = 100;
@@ -15,7 +22,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
     private void Awake()
     {
@@ -24,14 +31,57 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
+
+
+
+    private void FixedUpdate()
+    {
+        if (isAttacking)
+        {
+            bool isPlayerToMyLeft = PlayerTransform.position.x < transform.position.x;
+            facingRight = isPlayerToMyLeft ? false : true;
+            patrolSpeed = facingRight ? Math.Abs(patrolSpeed) : -Math.Abs(patrolSpeed);
+        }
+        else
+        {
+            if (facingRight && closeEnough(rightEdge.localPosition.x, transform.localPosition.x))
+            {
+                facingRight = !facingRight;
+                patrolSpeed = -patrolSpeed;
+            }
+            else if (!facingRight && closeEnough(leftEdge.localPosition.x, transform.localPosition.x))
+            {
+                facingRight = !facingRight;
+                patrolSpeed = -patrolSpeed;
+            }
+        }
+        if(canMove)
+            m_Rigidbody2D.velocity = new Vector2(patrolSpeed, 0);
+    }
+
+    internal void startAttack()
+    {
+        isAttacking = true;
+    }
+
+    internal void stopAttack()
+    {
+        isAttacking = false;
+    }
+
+    private bool closeEnough(float x1, float x2)
+    {
+        return Math.Abs(x1 - x2) < 0.05;
+    }
+
     private void OnTriggerEnter2D(Collider2D collider)
     {
         MeleeWeapon melee = collider.gameObject.GetComponent<MeleeWeapon>();
         if (melee != null)
         {
-            Damage(melee.getPower(),100, melee.HittingRight());
+            Damage(melee.getPower(), 100, melee.HittingRight());
 
         }
         RangedWeapon ranged = collider.gameObject.GetComponent<RangedWeapon>();
@@ -49,18 +99,30 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void Damage(int baseDamage,int knockback, bool hittingRight)
+    public void Damage(int baseDamage, int knockback, bool hittingRight)
     {
-        if(hittingRight)
+        if (hittingRight)
             m_Rigidbody2D.AddForce(new Vector2(knockback, 0));
         else
             m_Rigidbody2D.AddForce(new Vector2(-knockback, 0));
-
+        if (knockback > 0)
+        {
+            if (canMove)
+            {
+                canMove = false;
+                Invoke("EnableMove", 1f);
+            }
+        }
         hp -= baseDamage;
         HealthBar.fillAmount = hp / 100f;
-        Debug.Log("Enemy took " + baseDamage + " damage and has " + hp +" hp left");
+        Debug.Log("Enemy took " + baseDamage + " damage and has " + hp + " hp left");
         if (hp <= 0)
             Die();
+    }
+
+    private void EnableMove()
+    {
+        canMove = true;
     }
 
     private void Die()

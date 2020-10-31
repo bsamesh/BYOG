@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float m_JumpForce = 400;							// Amount of force added when the player jumps.
     [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;  // How much to smooth out the movement
-    [SerializeField]int runSpeed = 50;
+    [SerializeField] int runSpeed = 50;
 
     public Transform meleeWeapon;
     public Transform rangedWeapon;
@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     float defaultGravity;
     bool isMovingTowardsWall = false;
     bool isWallToMyLeft;
+    int spikeDamage = 20;
 
     public bool canMelee;
     public bool canRanged;
@@ -95,6 +96,8 @@ public class PlayerMovement : MonoBehaviour
 
         foreach (Collider2D collider in currentColiisions)
         {
+            if (collider == null || collider.gameObject == null)
+                continue;                    
             if (collider.gameObject.layer.Equals(LayerMask.NameToLayer("wall")))
             {
                 isWallToMyLeft = collider.gameObject.transform.position.x < transform.position.x;
@@ -111,18 +114,17 @@ public class PlayerMovement : MonoBehaviour
                 jumpsAvailable = 1;
             }
         }*/
-        Debug.Log("Velocity: " + m_Rigidbody2D.velocity.y + ", glide: "+glide);
         if (m_Rigidbody2D.velocity.y <= -0.3 && glide && !m_Grounded)
         {
             if (!canGlide)
             {
-                if(m_Rigidbody2D.velocity.y <= -2)
+                if (m_Rigidbody2D.velocity.y <= -2)
                     showSwastika();
             }
             else
                 m_Rigidbody2D.gravityScale = 0.55f;
         }
-        else if(glide)
+        else if (glide)
         {
             m_Rigidbody2D.gravityScale = defaultGravity;
         }
@@ -152,7 +154,7 @@ public class PlayerMovement : MonoBehaviour
                 targetVelocity.y = 0;
             }
         }
-        else if(!glide)
+        else if (!glide)
         {
             m_Rigidbody2D.gravityScale = defaultGravity;
         }
@@ -234,6 +236,15 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer.Equals(LayerMask.NameToLayer("spikes")))
+        {
+            Player.Damage(spikeDamage);
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         currentColiisions.Add(collision.collider);
@@ -265,7 +276,8 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("shield");
             shield.gameObject.SetActive(true);
-            gameObject.GetComponent<Player>().Shield(/*shield duration: */ 1f);
+            Player.Shield(1f);
+            //gameObject.GetComponent<Player>().Shield(/*shield duration: */ 1f);
             Invoke("disableShield", 1f);
         }
     }
