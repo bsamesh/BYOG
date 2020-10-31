@@ -101,7 +101,6 @@ public class PlayerMovement : MonoBehaviour
                 continue;                    
             if (collider.gameObject.layer.Equals(LayerMask.NameToLayer("Walls")))
             {
-                isWallToMyLeft = collider.gameObject.transform.position.x < transform.position.x;
                 if ((isWallToMyLeft && horizontalMove < 0) || (!isWallToMyLeft && horizontalMove > 0))
                     isMovingTowardsWall = true;
             }
@@ -232,7 +231,7 @@ public class PlayerMovement : MonoBehaviour
             if (isMovingTowardsWall && canWallslide)
             {
                 float horizontalForce = isWallToMyLeft ? m_JumpForce : -m_JumpForce;
-                horizontalForce *= 4;
+                horizontalForce *= 2;
                 m_Rigidbody2D.AddForce(new Vector2(horizontalForce, m_JumpForce));
             }
             else if (m_Grounded)
@@ -273,6 +272,10 @@ public class PlayerMovement : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         currentColiisions.Add(collision.collider);
+        if (collision.gameObject.layer.Equals(LayerMask.NameToLayer("Walls")))
+        {
+            isWallToMyLeft = collision.contacts[0].point.x < transform.position.x;
+        }
         if (collision.gameObject.layer.Equals(LayerMask.NameToLayer("ground")))
         {
             m_Grounded = true;
