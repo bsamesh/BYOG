@@ -12,13 +12,15 @@ public class LevelController : MonoBehaviour
         _nextLevelIndex++;
         if(_nextLevelIndex < 10)
         {
+            Player.hp = Player.maxHp;
             SceneManager.LoadScene("Level_" + _nextLevelIndex);
             //FindObjectOfType<AudioManager>().StopPlayingEverything();
             //FindObjectOfType<AudioManager>().Play("Theme" + _nextLevelIndex);
         }
         else
         {
-            SceneManager.LoadScene("Victory");
+            return;
+            //SceneManager.LoadScene("Victory");
             //FindObjectOfType<AudioManager>().StopPlayingEverything();
             //FindObjectOfType<AudioManager>().Play("Victory");
         }
