@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     public static Action PlayerTookDamage;
     public static Animator animator;
     public static Action PlayerDied;
-    public static bool lostControl = false;
+    public static bool lostControl = true;
 
     private void Awake()
     {

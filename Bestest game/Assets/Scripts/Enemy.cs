@@ -137,6 +137,7 @@ public class Enemy : MonoBehaviour
     }
     public void Damage(int baseDamage, int knockback, bool hittingRight)
     {
+        if (hp <= 0) return;
         if (hittingRight)
             m_Rigidbody2D.AddForce(new Vector2(knockback, 0));
         else
@@ -167,6 +168,7 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
+        damage = 0;
         animator.SetTrigger("Death");
         //deathAnimation.gameObject.SetActive(true);
         Destroy(gameObject.transform.parent.gameObject, 1f);

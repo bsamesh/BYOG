@@ -210,6 +210,7 @@ public class PlayerMovement : MonoBehaviour
                 animator.SetBool("WallSlide", true);
                 m_Rigidbody2D.gravityScale = 1.1f;
                 targetVelocity.y = 0;
+                hasDashAvailable = true;
             }
         }
         else if (!glide)
