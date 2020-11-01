@@ -28,6 +28,11 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene("Main_Menu");
+    }
+
     // Update is called once per frame
     void GameEnded()
     {
@@ -42,10 +47,7 @@ public class UIManager : MonoBehaviour
         Player.hp = Player.maxHp;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         gameOver = false;
+        Player.lostControl = true;
     }
 
-    public void GoToMenu()
-    {
-        //
-    }
 }

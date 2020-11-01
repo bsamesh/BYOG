@@ -8,5 +8,8 @@ public class MainMenu : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene("Level_1");
+        UIManager.gameOver = false;
+        //FindObjectOfType<AudioManager>().Play("Theme");
+        
     }
 }
