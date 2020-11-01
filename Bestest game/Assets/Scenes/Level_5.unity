@@ -115225,7 +115225,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 42
-      m_TileSpriteIndex: 42
+      m_TileSpriteIndex: 44
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -124073,14 +124073,14 @@ Tilemap:
   - m_RefCount: 2
     m_Data: {fileID: 5717620589406270221, guid: f2ec0e8a36233494082e814de3c5a58e,
       type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: 3787662972655637923, guid: f2ec0e8a36233494082e814de3c5a58e,
-      type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 14
     m_Data: {fileID: 8991895173164298689, guid: f2ec0e8a36233494082e814de3c5a58e,
       type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 3787662972655637923, guid: f2ec0e8a36233494082e814de3c5a58e,
+      type: 3}
   - m_RefCount: 6
     m_Data: {fileID: -2449178654158304918, guid: f2ec0e8a36233494082e814de3c5a58e,
       type: 3}
@@ -131850,7 +131850,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.5798511, y: 0.67511654}
+  m_Offset: {x: 0.5798511, y: -0.09956932}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -131861,7 +131861,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.7055827, y: 1.6199589}
+  m_Size: {x: 1.7055827, y: 0.29192734}
   m_EdgeRadius: 0
 --- !u!1 &2108464195
 GameObject:
