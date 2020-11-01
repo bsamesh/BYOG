@@ -45,7 +45,10 @@ public class Player : MonoBehaviour
         hp -= baseDamage;
 
         if (PlayerTookDamage != null)
+        {
             PlayerTookDamage.Invoke();
+            FindObjectOfType<AudioManager>().Play("Damaged");
+        }
 
         Debug.Log("player took " + baseDamage + " damage and has " + hp + "hp left");
         if (hp <= 0)
@@ -62,7 +65,10 @@ public class Player : MonoBehaviour
     {
         animator.SetTrigger("DeathTrigger");
         if (PlayerDied != null)
+        {
             PlayerDied.Invoke();
+            FindObjectOfType<AudioManager>().Play("PlayerDeath");
+        }
     }
 
     // Update is called once per frame

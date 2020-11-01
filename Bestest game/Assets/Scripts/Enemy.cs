@@ -100,6 +100,7 @@ public class Enemy : MonoBehaviour
     {
         isAttacking = true;
         attackIndicator.gameObject.SetActive(true);
+        FindObjectOfType<AudioManager>().Play("Alert");
     }
 
     internal void stopAttack()
@@ -170,6 +171,7 @@ public class Enemy : MonoBehaviour
     {
         damage = 0;
         animator.SetTrigger("Death");
+        FindObjectOfType<AudioManager>().Play("EnemyDeath");
         //deathAnimation.gameObject.SetActive(true);
         Destroy(gameObject.transform.parent.gameObject, 1f);
     }

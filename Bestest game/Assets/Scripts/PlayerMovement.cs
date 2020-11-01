@@ -237,6 +237,7 @@ public class PlayerMovement : MonoBehaviour
                 else
                 {
                     animator.SetBool("GDash", true);
+                    FindObjectOfType<AudioManager>().Play("Dash");
                     Invoke("DisableGDash", 0.3f);
                     float horizontalForce = lookingRight ? m_JumpForce : -m_JumpForce;
                     horizontalForce *= 4;
@@ -256,6 +257,7 @@ public class PlayerMovement : MonoBehaviour
                     if (hasDashAvailable)
                     {
                         animator.SetBool("AirDash", true);
+                        FindObjectOfType<AudioManager>().Play("Dash");
                         Invoke("DisableAirDash", 0.3f);
                         m_Rigidbody2D.AddForce(new Vector2(horizontalForce, 0f));
                         hasDashAvailable = false;
@@ -274,6 +276,7 @@ public class PlayerMovement : MonoBehaviour
             else if (m_Grounded)
             {
                 animator.SetBool("Jump", true);
+                FindObjectOfType<AudioManager>().Play("Jump");
                 animator.SetBool("Fall", false);
                 m_Grounded = false;
                 m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
@@ -288,6 +291,7 @@ public class PlayerMovement : MonoBehaviour
                 else
                 {
                     animator.SetBool("DoubleJump", true);
+                    FindObjectOfType<AudioManager>().Play("DoubleJump");
                     m_Grounded = false;
                     m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, 0f);
                     m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
@@ -363,6 +367,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("shield");
             shield.gameObject.SetActive(true);
+            FindObjectOfType<AudioManager>().Play("Shield");
             shieldOnCooldown = true;
             Player.Shield(1f);
             //gameObject.GetComponent<Player>().Shield(/*shield duration: */ 1f);
@@ -390,6 +395,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("melee");
             animator.SetBool("Attack", true);
+            FindObjectOfType<AudioManager>().Play("Melee");
             meleeWeapon.gameObject.SetActive(true);
             Invoke("disableMelee", 0.5f);
         }
@@ -405,6 +411,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("ranged");
             animator.SetBool("Ranged", true);
+            FindObjectOfType<AudioManager>().Play("Ranged");
             rangedWeapon.gameObject.SetActive(true);
             rangedWeapon.gameObject.GetComponent<RangedWeapon>().Shoot(lookingRight);
             Invoke("disableRanged", 0.5f);
@@ -428,6 +435,7 @@ public class PlayerMovement : MonoBehaviour
         if (!swastika.gameObject.activeSelf)
         {
             swastika.gameObject.SetActive(true);
+            FindObjectOfType<AudioManager>().Play("Shortage");
             Invoke("hideSwastika", 0.5f);
         }
     }
