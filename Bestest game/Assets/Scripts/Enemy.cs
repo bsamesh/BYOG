@@ -24,11 +24,14 @@ public class Enemy : MonoBehaviour
 
     public int damage = 10;
     public Animator animator;
+    SpriteRenderer m_SpriteRenderer;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = gameObject.GetComponent<Animator>();
+        m_SpriteRenderer = GetComponent<SpriteRenderer>();
+        m_SpriteRenderer.color = Color.white;
     }
     private void Awake()
     {
@@ -156,12 +159,24 @@ public class Enemy : MonoBehaviour
         Debug.Log("Enemy took " + baseDamage + " damage and has " + hp + " hp left");
         if (hp <= 0)
             Die();
+        else
+        {
+            m_SpriteRenderer.color = Color.red;
+            Invoke("EndRed", 0.5f);
+        }
     }
+
+    private void EndRed()
+    {
+        m_SpriteRenderer.color = Color.white;
+    }
+
     private void SheateWeapon()
     {
         animator.SetBool("Attack", false);
         weapon.gameObject.SetActive(false);
     }
+
     private void EnableMove()
     {
         canMove = true;

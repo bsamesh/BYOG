@@ -10,11 +10,13 @@ public class Player : MonoBehaviour
     public static int hp = maxHp;
     static bool isShielded = false;
     static float shieldDuration = 0;
+    static float dmgDuration = 0;
     public Image ShieldBar;
     public static Action PlayerTookDamage;
     public static Animator animator;
     public static Action PlayerDied;
     public static bool lostControl = true;
+    static SpriteRenderer m_SpriteRenderer;
 
     private void Awake()
     {
@@ -24,7 +26,8 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        m_SpriteRenderer = GetComponent<SpriteRenderer>();
+        m_SpriteRenderer.color = Color.white;
     }
 
     public static void Shield(float time)
@@ -36,6 +39,10 @@ public class Player : MonoBehaviour
     public void Unshield()
     {
         isShielded = false;
+    }
+    public static void DMG(float time)
+    {
+        dmgDuration = time;
     }
 
     public static bool Damage(int baseDamage)
@@ -55,6 +62,11 @@ public class Player : MonoBehaviour
         {
             Die();
             return false;
+        }
+        else
+        {
+            m_SpriteRenderer.color = Color.red;
+            DMG(0.5f);
         }
         Shield(2f);
 
@@ -83,6 +95,13 @@ public class Player : MonoBehaviour
             ShieldBar.fillAmount = shieldDuration;
             if (shieldDuration <= 0)
                 Unshield();
+        }
+
+        if (dmgDuration > 0)
+        {
+            dmgDuration -= Time.deltaTime;
+            if (dmgDuration <= 0)
+                m_SpriteRenderer.color = Color.white;
         }
     }
 }
