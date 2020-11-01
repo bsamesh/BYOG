@@ -736,6 +736,7 @@ MonoBehaviour:
   shield: {fileID: 7733662083192675445}
   swastika: {fileID: 7425559359993512309}
   animator: {fileID: 0}
+  shieldOnCooldown: 0
   canMelee: 1
   canRanged: 1
   canGroundDash: 1
@@ -819,8 +820,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7733662084609236398}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.24, y: 0.29, z: 0}
-  m_LocalScale: {x: 15.899084, y: 19.141052, z: 11.56297}
+  m_LocalPosition: {x: 1.6, y: 0.22, z: 0}
+  m_LocalScale: {x: 20.668808, y: 19.141052, z: 11.56297}
   m_Children: []
   m_Father: {fileID: 7733662084393821538}
   m_RootOrder: 0

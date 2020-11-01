@@ -132,11 +132,11 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: Crushing
+  - name: Crash
     clip: {fileID: 8300000, guid: c45b61416f6b9634b8ee2cfe1d5c460c, type: 3}
     mixer: {fileID: -8474054433567018370, guid: 59406e112281808479dc48f22db669ab,
       type: 2}
-    volume: 0.2
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}

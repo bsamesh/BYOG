@@ -148847,6 +148847,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2858045885138460800, guid: 29785e2f0fa58884bbd8a135f3470ae3,
+        type: 3}
+      propertyPath: m_Text
+      value: MY POOR LEG THRUSTERS
+      objectReference: {fileID: 0}
+    - target: {fileID: 2858045885138460803, guid: 29785e2f0fa58884bbd8a135f3470ae3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -208.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 2858045885138460803, guid: 29785e2f0fa58884bbd8a135f3470ae3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -473.33
+      objectReference: {fileID: 0}
     - target: {fileID: 9192365367462256921, guid: 29785e2f0fa58884bbd8a135f3470ae3,
         type: 3}
       propertyPath: m_LocalPosition.x

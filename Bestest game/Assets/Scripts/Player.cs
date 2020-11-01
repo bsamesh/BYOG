@@ -70,7 +70,10 @@ public class Player : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("PlayerDeath");
         }
     }
-
+    public static void Crashed()
+    {
+        animator.SetTrigger("Crash");
+    }
     // Update is called once per frame
     void Update()
     {

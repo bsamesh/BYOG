@@ -132175,5 +132175,31 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2489731911590486569, guid: cb90444360a5c0241a2be7e02cd24dfb,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -471.78186
+      objectReference: {fileID: 0}
+    - target: {fileID: 2489731911590486569, guid: cb90444360a5c0241a2be7e02cd24dfb,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -225.94
+      objectReference: {fileID: 0}
+    - target: {fileID: 2489731911590486569, guid: cb90444360a5c0241a2be7e02cd24dfb,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 9.44043
+      objectReference: {fileID: 0}
+    - target: {fileID: 2489731911590486569, guid: cb90444360a5c0241a2be7e02cd24dfb,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 5.5181513
+      objectReference: {fileID: 0}
+    - target: {fileID: 2489731911590486570, guid: cb90444360a5c0241a2be7e02cd24dfb,
+        type: 3}
+      propertyPath: m_Text
+      value: I bet i could reach that far with my glide if i wasn't SO FAT [or had
+        my gliders..]
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb90444360a5c0241a2be7e02cd24dfb, type: 3}

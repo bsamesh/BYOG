@@ -11,8 +11,9 @@ public class EnterLevel : MonoBehaviour
         if (!wasTouched && player != null)
         {
             Debug.Log("Entered Level!");
-            //FindObjectOfType<AudioManager>().Play("Diamond");
+            FindObjectOfType<AudioManager>().Play("Crash");
             Destroy(gameObject);
+            Player.Crashed();
             Player.lostControl = false;
             Player.hp = Player.maxHp;
             wasTouched = true;
