@@ -112,10 +112,10 @@ MonoBehaviour:
     y: 30
     width: 2560
     height: 1307
-  m_MinSize: {x: 677, y: 492}
-  m_MaxSize: {x: 18003, y: 14042}
+  m_MinSize: {x: 719, y: 492}
+  m_MaxSize: {x: 18004, y: 14042}
   vertical: 0
-  controlID: 3180
+  controlID: 791
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -137,10 +137,10 @@ MonoBehaviour:
     y: 0
     width: 1815
     height: 1307
-  m_MinSize: {x: 402, y: 492}
+  m_MinSize: {x: 443, y: 492}
   m_MaxSize: {x: 14003, y: 14042}
   vertical: 1
-  controlID: 3181
+  controlID: 705
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -162,10 +162,10 @@ MonoBehaviour:
     y: 0
     width: 1815
     height: 651
-  m_MinSize: {x: 402, y: 221}
-  m_MaxSize: {x: 8002, y: 4021}
+  m_MinSize: {x: 443, y: 221}
+  m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
-  controlID: 3182
+  controlID: 706
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: SceneHierarchyWindow
+  m_Name: GridPaintPaletteWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -185,14 +185,14 @@ MonoBehaviour:
     y: 0
     width: 542
     height: 651
-  m_MinSize: {x: 201, y: 221}
+  m_MinSize: {x: 241, y: 221}
   m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 16}
+  m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 16}
   - {fileID: 17}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -245,7 +245,7 @@ MonoBehaviour:
   m_MinSize: {x: 333, y: 271}
   m_MaxSize: {x: 14003, y: 10021}
   vertical: 0
-  controlID: 3126
+  controlID: 735
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -472,9 +472,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
+      m_SelectedIDs: 5a400000
       m_LastClickedID: 0
-      m_ExpandedIDs: d0b2ffff2ab7ffff8cc3ffff8ec9ffff0ccdffff74d1ffffc0d7ffff88dbffff7adcffff2ee4ffffaee7fffffcebffff38f2ffff5cfbffff
+      m_ExpandedIDs: 1cc1ffff06e5ffffeee8ffffd2f4ffffb2f8ffff5cfbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -565,9 +565,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -2.6084945, y: -0.41826692, z: -452.93674}
+    m_Target: {x: 49.86277, y: 17.935373, z: -463.40625}
     speed: 2
-    m_Value: {x: -2.6084945, y: -0.41826692, z: -452.93674}
+    m_Value: {x: 49.86277, y: 17.935373, z: -463.40625}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -617,9 +617,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 6.717629
+    m_Target: 36.596264
     speed: 2
-    m_Value: 6.717629
+    m_Value: 35.020348
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -720,9 +720,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 96400000
-    m_LastClickedID: 16534
-    m_ExpandedIDs: 000000007e40000080400000824000008440000086400000
+    m_SelectedIDs: 50400000
+    m_LastClickedID: 16464
+    m_ExpandedIDs: 00000000384000003a4000003c4000003e40000040400000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -750,7 +750,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000007e40000080400000824000008440000086400000
+    m_ExpandedIDs: 00000000384000003a4000003c4000003e40000040400000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -777,7 +777,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000ae39000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -918,14 +918,14 @@ MonoBehaviour:
     - {fileID: -5425470275690408477, guid: 5c921e81b14397f46a29bc0b5219acce, type: 2}
     - {fileID: 2205874232410699399, guid: 914e4876f92d16e4f8b9274422da70d2, type: 2}
     m_ValueSerializationHelper:
-    - e00: 0.37239584
+    - e00: 0.749021
       e01: 0
       e02: 0
-      e03: 7.552063
+      e03: 24.59774
       e10: 0
-      e11: 0.37239584
+      e11: 0.749021
       e12: 0
-      e13: 311.03384
+      e13: 185.26006
       e20: 0
       e21: 0
       e22: 1
